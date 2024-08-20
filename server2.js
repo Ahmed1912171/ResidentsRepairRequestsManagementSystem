@@ -1,4 +1,5 @@
 {
+  "name": "new-file-001",
   "version": "1.0.0",
   "main": "server2.js",
   "scripts": {
