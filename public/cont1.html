@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contractor Items</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="text-center">Contractor Items</h2>
+        <form id="itemForm">
+            <div class="form-group">
+                <label for="requestId">Request ID:</label>
+                <input type="text" class="form-control" id="requestId" required>
+            </div>
+            <table class="table table-bordered" id="itemsTable">
+                <thead>
+                    <tr>
+                        <th>Items</th>
+                        <th>Quantity</th>
+                        <th>Misc</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Rows will be dynamically inserted here -->
+                </tbody>
+            </table>
+            <button type="button" class="btn btn-secondary" id="addRow">Add Row</button>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            let rowId = 0; // To track row numbers
+
+            $('#addRow').click(function() {
+                rowId++;
+                $('#itemsTable tbody').append(`
+                    <tr id="row${rowId}">
+                        <td><input type="text" class="form-control" name="items" required></td>
+                        <td><input type="text" class="form-control" name="quantity" required></td>
+                        <td><input type="text" class="form-control" name="misc" required></td>
+                        <td><button type="button" class="btn btn-danger" onclick="removeRow('row${rowId}')">Remove</button></td>
+                    </tr>
+                `);
+            });
+
+            $('#deleteRow').click(function() {
+                $('#itemsTable tbody tr:last').remove();
+            });
+
+            $('#itemForm').submit(function(event) {
+                event.preventDefault();
+                
+                const requestId = $('#requestId').val();
+                const rows = $('#itemsTable tbody tr');
+                let itemsData = [];
+
+                rows.each(function() {
+                    const row = $(this);
+                    itemsData.push({
+                        items: row.find('input[name="items"]').val(),
+                        quantity: row.find('input[name="quantity"]').val(),
+                        misc: row.find('input[name="misc"]').val()
+                    });
+                });
+
+                const dataToSend = {
+                    Request_ID: requestId,
+                    itemsData: itemsData
+                };
+
+                $.ajax({
+                    url: '/api/items',
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify(dataToSend),
+                    success: function(response) {
+                        alert('Data submitted successfully!');
+                        $('#itemForm')[0].reset();
+                        $('#itemsTable tbody').empty();
+                    },
+                    error: function(err) {
+                        console.error('Error:', err);
+                    }
+                });
+            });
+        });
+
+        function removeRow(rowId) {
+            $(`#${rowId}`).remove();
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+   
+    <div class="invoice-container">
+        <header>
+            <div class="company-details">
+                <h1 id="contractor-name">Contractor Name</h1>
+                <p id="contractor-address">1234 Street Address</p>
+                <p id="contractor-city">City, State, ZIP</p>
+                <p>Email: <span id="contractor-email">contact@company.com</span></p>
+                <p>Phone: <span id="contractor-phone">(123) 456-7890</span></p>
+            </div>
+            <div class="invoice-details">
+                <h2>Invoice</h2>
+                <p>Invoice #: <span id="invoice-number">0001</span></p>
+                <p>Date: <span id="invoice-date">August 9, 2024</span></p>
+            </div>
+        </header>
+
+        <section class="billing-details">
+            <div class="billing-info">
+                <h3>Customer Information</h3>
+                <p id="client-name">Client Name</p>
+                <p id="client-address">Client Address</p>
+                <p id="client-city">City, State, ZIP</p>
+            </div>
+        </section>
+
+        <section class="invoice-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Serial Number</th>
+                        <th>Item</th>
+                        <th>Quantity</th>
+                        <th>Misc</th>
+                    </tr>
+                </thead>
+                <tbody id="invoice-items"></tbody>
+            </table>
+        </section>
+
+        <section class="invoice-summary">
+            <table>
+                <tr>
+                    <td>Status</td>
+                    <td id="status">Approved</td>
+                </tr>
+            </table>
+        </section>
+
+        <footer>
+            <p>Thank you for your business!</p>
+        </footer>
+        <a class="icon-link-hover pe-auto" onclick="window.print()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-printer-fill" viewBox="0 0 16 16">
+                <path d="M5 1a2 2 0 0 0-2 2v1h10V3a2 2 0 0 0-2-2zm6 8H5a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1"/>
+                <path d="M0 7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2h-1v-2a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v2H2a2 2 0 0 1-2-2zm2.5 1a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1"/>
+            </svg>
+        </a>
+    </div>
+
+    <script>
+ // Fetch data from the server and fill the form
+ fetch('http://localhost:3000/miv')
+ 
+            .then(response => response.json())
+            .then(data => {
+                // Fill in contractor details
+                document.getElementById('contractor-name').textContent = data.contractorName;
+                document.getElementById('contractor-address').textContent = data.contractorAddress;
+                document.getElementById('contractor-city').textContent = data.contractorCity;
+                document.getElementById('contractor-email').textContent = data.contractorEmail;
+                document.getElementById('contractor-phone').textContent = data.contractorPhone;
+
+                // Fill in invoice details
+                document.getElementById('invoice-number').textContent = data.invoiceNumber;
+                document.getElementById('invoice-date').textContent = data.invoiceDate;
+
+                // Fill in customer details
+                document.getElementById('client-name').textContent = data[0].Name;
+document.getElementById('client-address').textContent = `${data[0].House_No}, ${data[0].Colony}`;
+document.getElementById('status').textContent = data[0].Status;
+
+                // Fill in invoice items
+                fetch('http://localhost:3000/api/items/008')
+                const invoiceItems = document.getElementById('invoice-items');
+                data.items.forEach(item => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${item.Request_ID}</td>
+                        <td>${item.item}</td>
+                        <td>${item.quantity}</td>
+                        <td>${item.misc}</td>
+                    `;
+                    invoiceItems.appendChild(row);
+                });
+
+                // Fill in status
+                document.getElementById('status').textContent = data.status;
+            })
+            .catch(error => console.error('Error fetching data:', error));
+    </script>
+</body>
+<style>
+    body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f7f7f7;
+    margin: 0;
+    padding: 20px;
+}
+
+.invoice-container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    border-bottom: 2px solid #333;
+    padding-bottom: 20px;
+}
+
+.company-details {
+    text-align: left;
+    flex: 1;
+    margin-bottom: 20px;
+}
+
+.invoice-details {
+    text-align: right;
+    flex: 1;
+    margin-bottom: 20px;
+}
+
+.billing-details {
+    margin: 20px 0;
+}
+
+.billing-info {
+    text-align: left;
+}
+
+.invoice-table {
+    width: 100%;
+    margin-bottom: 20px;
+    overflow-x: auto;
+}
+
+.invoice-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.invoice-table th, .invoice-table td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+.invoice-summary {
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.invoice-summary table {
+    width: auto;
+    border-collapse: collapse;
+}
+
+.invoice-summary td {
+    padding: 8px;
+    text-align: right;
+}
+
+footer {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 2px solid #333;
+}
+
+footer p {
+    margin: 0;
+    font-weight: bold;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .company-details, .invoice-details {
+        flex: none;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .invoice-summary {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+
+    .invoice-container {
+        padding: 10px;
+    }
+
+    .invoice-table th, .invoice-table td {
+        padding: 8px;
+    }
+
+    .invoice-summary td {
+        padding: 5px;
+    }
+}
+
+</style>
+</html>

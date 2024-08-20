@@ -1,0 +1,137 @@
+body {
+  font-family: "Helvetica", Arial, sans-serif;
+    background: #f8f9fa;
+    color: #333;
+    line-height: 1.6;
+  }
+  
+  .wrap {
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .img {
+    flex: 1;
+    background-size: cover;
+    background-position: center;
+    min-height: 300px;
+  }
+  
+  .login-wrap {
+    flex: 1;
+    padding: 2em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f2f5;
+  }
+  
+  .heading-section {
+    font-size: 2em;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 1em;
+    text-align: center;
+  }
+  
+  h3 {
+    font-size: 1.5em;
+    margin-bottom: 1em;
+    color: #333;
+  }
+  
+  form {
+    width: 100%;
+    max-width: 350px;
+  }
+  
+  .form-group {
+    margin-bottom: 1.5em;
+    width: 100%;
+  }
+  
+  .form-control {
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: .75em;
+    font-size: 1em;
+    transition: border-color 0.3s;
+  }
+  
+  .form-control:focus {
+    border-color: #14b31c;
+    outline: none;
+  }
+  
+  .btn {
+    width: 30%; /* Adjusted width */
+    background: #037407;
+    border: none;
+    font-size: 12px; /* Increased font size */
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-left: auto; /* Center align horizontally */
+    margin-right: auto; /* Center align horizontally */
+    display: block; /* Ensures the button is treated as a block element for centering */
+}
+
+  
+  .btn-primary:hover {
+    background: #055528;
+  }
+  
+  .checkbox-wrap {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1em;
+  }
+  
+  .checkbox-wrap input {
+    margin-right: 10px;
+  }
+  
+  .social-media {
+    text-align: center;
+    margin-top: 1em;
+  }
+  
+  .social-media a {
+    display: inline-block;
+    margin: 0 10px;
+    color: #333;
+    transition: color 0.3s;
+  }
+  
+  .social-media a:hover {
+    color: #007bff;
+  }
+  
+  .text-center a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  .text-center a:hover {
+    text-decoration: underline;
+  }
+  
+  @media (min-width: 768px) {
+    .wrap {
+      flex-direction: row;
+    }
+  
+    .img,
+    .login-wrap {
+      flex: 1;
+    }
+  }

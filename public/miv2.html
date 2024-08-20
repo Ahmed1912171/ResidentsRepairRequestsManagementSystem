@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Responsive DataTable Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap5.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.bootstrap5.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script>
+  <script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
+  <script src="https://cdn.datatables.net/responsive/2.2.9/js/responsive.bootstrap5.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="/style/styles2.css">
+
+</head>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom border-secondary border-opacity-25 rounded-bottom shadow">
+    <div class="container-fluid">
+        <a class="navbar-brand text-success" href="dashboard.html">
+          <img src="logo2.png" alt="logo2" style="height: 30px;">
+          RRMMS
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link text-dark" href="dashboard.html">Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" href="repair.html">Repair Request</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" href="clerk.html">User Approval</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active text-success fw-bold" href="miv.html">MIV Request</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" href="Userscreen.html">User Management</a>
+                </li>
+            </ul>
+            <div class="d-flex align-items-center">
+                <span id="username" class="me-2">Ahmed Hasan</span>
+                <a class="text-dark" href="login.html">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="30" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0z"/>
+                        <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<body>
+
+    <div class="container" id="blur"> 
+      
+        <div class="outer-square mt-3">
+            <div class="inner-square">
+                <div id="request-info">
+                    
+                    <!-- Request details will be displayed here -->
+                </div>
+            </div>
+        
+     
+            <p class="text22 mt-5">
+                The UPS is malfunctioning, likely due to a short circuit. The electrical problem disrupts the UPS's ability to provide backup power, compromising its functionality and potentially risking damage to connected devices. Immediate attention is required to diagnose and resolve the issue to restore normal operation and prevent further damage.
+            </p>
+                <h3>Images</h3>
+                <div class="image-section">
+                    <img src="/images/UPS.jpg" alt="Image 1" onclick="openModal(this)">
+                    <img src="/images/UPS.jpg" alt="Image 2" onclick="openModal(this)">
+                    <img src="/images/UPS.jpg" alt="Image 3" onclick="openModal(this)">
+                    <img src="/images/UPS.jpg" alt="Image 4" onclick="openModal(this)">
+                </div>
+            
+                <div id="myModal" class="modal">
+                    <span class="close" onclick="closeModal()">&times;</span>
+                    <div class="modal-content">
+                        <img id="modalImage" src="">
+                    </div>
+                </div>
+                <div class="buttons">
+                    <button class="b3" onclick="window.location.href='miv.html';">&nbsp;&nbsp;Back&nbsp;&nbsp;</button>
+                    <button class="b1" onclick="toggle2()">&nbsp;Reject&nbsp;</button>
+                    <button class="b2"  onclick="approve()">Approve</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<div id="popup">
+    <div class="popup">
+        <div class="header">
+    <button class="x" onclick="toggle()">X</button>
+
+            <h1><u>Items Requested</u></h1>
+        </div>
+        <div class="content">
+            <p><strong>Name:</strong> <span id="name-value"></span></p>
+<p><strong>Request Date:</strong> <span id="request-date-value"></span></p>
+<p><strong>Status:</strong> <span id="status-value"></span></p>
+
+            <table class="table table-bordered" id="itemsTable">
+                <thead>
+                    <tr>
+                        <th>Items</th>
+                        <th>Quantity</th>
+                        <th>Misc</th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Rows will be dynamically inserted here -->
+                </tbody>
+            </table>
+        </div>
+        <div class="button-container">
+            
+            <button class="b2" onclick="toggle(); updateStatus('Approved By Warehouse Incharge'); window.location.href='miv.html';">Submit</button>
+        </div>
+    </div>
+</div>
+
+<div id="popup2">
+    <button class="x" onclick="toggle2()">X</button>
+
+    <h1 class="abcd">Rejection Reason:</h1>
+    <form action="/submit-reason" method="POST" id="myForm" class="was-validated" novalidate>
+        <div class="mb-3">
+            <label for="validationTextarea" class="form-label">Textarea</label>
+            <textarea class="form-control" id="validationTextarea" row="5" cols="5" placeholder="" required></textarea>
+            <div class="invalid-feedback">
+                Please enter a message in the textarea.
+            </div>
+        </div>
+
+        <div class="button-container">
+            <button id="submitButton" class="b1" type="submit" disabled>Submit</button>
+        </div>    
+    </form>    
+</div>
+
+<script>
+
+
+function toggle(){
+            var blur = document.getElementById('blur');
+            blur.classList.toggle('active')
+
+            var popup = document.getElementById('popup');
+            popup.classList.toggle('active')
+        }
+        function toggle2(){
+            var blur = document.getElementById('blur');
+            blur.classList.toggle('active')
+
+            var popup2 = document.getElementById('popup2');
+            popup2.classList.toggle('active')
+        }
+
+        
+        let selectedContractor = null;
+
+    function selectContractor(contractorName) {
+        selectedContractor = contractorName;
+        document.getElementById('dropdownMenuButton').innerText = contractorName;
+    }
+
+    function approve() {
+        var blur = document.getElementById('blur');
+            blur.classList.toggle('active')
+
+            var popup = document.getElementById('popup');
+            popup.classList.toggle('active')
+    }
+
+    function reject() {
+        window.location.href = 'miv.html';
+    }
+        
+        
+        document.getElementById('myForm').addEventListener('input', function () {
+            const form = this;
+            const submitButton = document.getElementById('submitButton');
+            if (form.checkValidity()) {
+                submitButton.disabled = false;
+            } else {
+                submitButton.disabled = true;
+            }
+        });
+
+        document.getElementById('myForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+            if (this.checkValidity()) {
+                toggle2();
+                updateStatus('Rejected');
+                window.location.href = 'miv.html';
+            }
+        });
+
+        function updateStatus(status) {
+            const requestId = getQueryParameter('Request_ID');
+            fetch(`http://localhost:3000/data/${requestId}/status`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ status: status }),
+            })
+            .then(response => response.json())
+            .then(updatedItem => {
+                // Assuming displayTable is a function to refresh the table
+                // displayTable(updatedItem);
+                window.location.href = 'miv.html';
+            })
+            .catch(error => console.error('Error updating status:', error));
+        }
+
+        function getQueryParameter(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+
+        function displayRequestDetails(data, requestId) {
+            const container = document.getElementById('request-info');
+            const item = data.find(d => d.Request_ID === requestId);
+
+            if (item) {
+                // Create table
+                const table = document.createElement('table');
+                const thead = document.createElement('thead');
+                const tbody = document.createElement('tbody');
+
+               // Table headers
+               const headerRow = document.createElement('tr');
+                const headers = ['Request ID','Customer Name', 'House No', 'Colony', 'Request Date', 'Type of Request','Status'];
+              
+                headers.forEach(headerText => {
+                    const th = document.createElement('th');
+                    th.textContent = headerText;
+                    headerRow.appendChild(th);
+                });
+                thead.appendChild(headerRow);
+
+               // Table data row
+               const dataRow = document.createElement('tr');
+                const dataCells = [
+                    item.Request_ID,
+                    item.Name,
+                    item.House_No,
+                    item.Colony,
+                    item.Created_Date,
+                    item.Nature_of_Request,
+                    item.Status
+                ];
+                dataCells.forEach(dataText => {
+                    const td = document.createElement('td');
+                    td.textContent = dataText;
+                    dataRow.appendChild(td);
+                });
+                tbody.appendChild(dataRow);
+
+                table.appendChild(thead);
+                table.appendChild(tbody);
+
+                container.innerHTML = '';
+                container.appendChild(table);
+                document.getElementById('name-value').textContent = item.Name;
+        document.getElementById('request-date-value').textContent = item.Created_Date;
+        document.getElementById('status-value').textContent = item.Status;
+            }
+        }
+
+
+        function openModal(image) {
+            var modal = document.getElementById("myModal");
+            var modalImg = document.getElementById("modalImage");
+            modal.style.display = "flex";
+            modalImg.src = image.src;
+        }
+
+        function closeModal() {
+            var modal = document.getElementById("myModal");
+            modal.style.display = "none";
+        }
+
+        // Close modal when clicking outside the image
+        window.onclick = function(event) {
+            var modal = document.getElementById("myModal");
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+        function fetchData() {
+            const requestId = getQueryParameter('Request_ID');
+            fetch('http://localhost:3000/clerk')
+                .then(response => response.json())
+                .then(data => displayRequestDetails(data, requestId))
+                .catch(error => console.error('Error fetching data:', error));
+        }
+
+        function populateItemsTable() {
+    const requestId = getQueryParameter('Request_ID');
+    fetch(`/api/items/${requestId}`)
+        .then(response => response.json())
+        .then(itemsData => {
+            const tableBody = document.querySelector('#itemsTable tbody');
+            tableBody.innerHTML = ''; // Clear existing rows
+
+            itemsData.forEach(item => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${item.items}</td>
+                    <td>${item.quantity}</td>
+                    <td>${item.misc}</td>
+                `;
+                tableBody.appendChild(row);
+            });
+        })
+        .catch(error => console.error('Error fetching items:', error));
+}
+
+    
+
+window.onload = function() {
+    fetchData(); // Existing function to fetch request details
+    populateItemsTable(); // New function to fetch and populate items
+};
+
+</script>
+
+</body>
+
+</html>
