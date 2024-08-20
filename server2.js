@@ -18,8 +18,7 @@
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "mongodb": "^6.8.0",
-    "mongoose": "^8.5.3",
-    "vercel": "^36.0.0"
+    "mongoose": "^8.5.3"
   },
   "devDependencies": {
     "nodemon": "^3.1.4"
